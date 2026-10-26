@@ -2,8 +2,8 @@
 
 A production-minded MVP scaffold for a general-purpose inventory management system with multiple branches and warehouses.
 
-**Theme:** Atomic Orange `#FF6A00` + Ice Cream Blue `#BFEFFF`  
-**Stack:** React, TypeScript, Vite, Tailwind CSS, Node.js, Express, Turso/libSQL, Zod, Vitest.
+ ## Stack:
+React, TypeScript, Vite, Tailwind CSS, Node.js, Express, Turso/libSQL, Zod, Vitest.
 
 ## Included
 
