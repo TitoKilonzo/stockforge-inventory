@@ -1,0 +1,16 @@
+{
+  "name": "StockForge Inventory",
+  "short_name": "StockForge",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FFFFFF",
+  "theme_color": "#FF6A00",
+  "icons": [
+    {
+      "src": "/stockforge-icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
