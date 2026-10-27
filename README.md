@@ -121,8 +121,9 @@ See `apps/api/.env.example` and `apps/web/.env.example`. Never commit real secre
 - Build command: `npm install && npm run build`
 - Start command: `npm run start:api`
 - Set `NODE_ENV=production`, `TURSO_DATABASE_URL`, `TURSO_AUTH_TOKEN`, `JWT_SECRET`, and `CORS_ORIGIN`.
+- Set `CORS_ORIGIN` to the exact Vercel production origin, for example `https://your-project.vercel.app` (no trailing slash). Add additional comma-separated origins only for Vercel preview domains you use.
 - Use a long, random JWT secret (at least 32 bytes of entropy).
-- Configure TLS, health checks at `/api/health`, and log retention.
+- Configure TLS, health checks at `/api/health`, and log retention. The service root `/` returns API status and endpoint information.
 - Disable public registration or implement invitation-only onboarding before real business use.
 
 ### Frontend (Vercel or similar)
@@ -130,7 +131,8 @@ See `apps/api/.env.example` and `apps/web/.env.example`. Never commit real secre
 - Root directory: repository root
 - Build command: `npm install && npm run build`
 - Output directory: `apps/web/dist`
-- Set `VITE_API_URL` to the deployed API base URL, e.g. `https://your-api.example.com/api`.
+- Set `VITE_API_URL` to `https://stockforge-inventory.onrender.com/api` (or your deployed API base URL ending in `/api`). Vite embeds this value at build time, so redeploy after changing it.
+- If `VITE_API_URL` is unset, production builds use the StockForge Render API automatically; local development continues to use `http://localhost:4000/api`.
 
 ### Database
 
