@@ -8,7 +8,10 @@ import {
 
 type Product = { id:number; sku:string; name:string; barcode?:string; unit:string; cost_price:number; selling_price:number; reorder_level:number; track_expiry:number; total_quantity:number };
 type Page = 'home'|'about'|'contact'|'signin'|'register'|'dashboard'|'products'|'movements'|'purchasing'|'sales'|'reports'|'help';
-const API = ((import.meta as any).env.VITE_API_URL || ((import.meta as any).env.DEV ? 'http://localhost:4000/api' : 'https://stockforge-inventory.onrender.com/api')).replace(/\/+$/, '');
+const env = (import.meta as any).env;
+const configuredApiUrl = env.VITE_API_URL?.trim().replace(/\/+$/, '');
+const apiBaseUrl = configuredApiUrl || (env.DEV ? 'http://localhost:4000/api' : 'https://stockforge-inventory.onrender.com/api');
+const API = /\/api$/i.test(apiBaseUrl) ? apiBaseUrl : `${apiBaseUrl}/api`;
 const money = (v:number) => new Intl.NumberFormat('en-KE',{style:'currency',currency:'KES',maximumFractionDigits:0}).format(v || 0);
 const displaySku = (sku:string) => sku.replace(/-/g,' ');
 const displayProductName = (name:string) => name.replace(/-/g,' ');

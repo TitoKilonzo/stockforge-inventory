@@ -11,9 +11,10 @@ import { inventoryRouter } from "./routes/inventory.js";
 const app = express();
 app.disable("x-powered-by");
 app.use(helmet());
-const origins = (process.env.CORS_ORIGIN || "http://localhost:5173").split(",").map(s=>s.trim());
+const configuredOrigins = (process.env.CORS_ORIGIN || "http://localhost:5173").split(",").map(s=>s.trim()).filter(Boolean);
+const origins = new Set([...configuredOrigins, "https://web-topaz-delta.vercel.app"]);
 app.use(cors({origin:(origin,callback)=> {
-  if (!origin || origins.includes(origin)) return callback(null,true);
+  if (!origin || origins.has(origin)) return callback(null,true);
   return callback(new Error("Origin not allowed by CORS"));
 }}));
 app.use(express.json({limit:"1mb"}));
